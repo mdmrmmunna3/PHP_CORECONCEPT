@@ -129,6 +129,5 @@ echo <<<form
     </div>
 
 </body>
-
 form;
 ?>
