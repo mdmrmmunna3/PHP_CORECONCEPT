@@ -86,6 +86,35 @@ class Hello {
 echo Hello::rafi(10) . "<br>"; //static with function
 echo Hello::$counter. "<br>"; //static 
 
-$munna = new Hello(); // dynsmic
+$munna = new Hello(); // dynamic
 echo $munna->ali(15);
+echo "<br>";
+
+?>
+
+
+<?php 
+class Intern {
+    public static $className = "PWAD";
+    public static $teacher = "Farhana Mam";
+    public $student ;
+
+    function ourClass ($student) {
+       return "Student Name: " . "". $this->student = $student;
+    }
+}
+echo "Course Name: ";
+echo Intern::$className; // direct call class // static class
+echo "<br>";
+echo "Teacher Name: ";
+echo Intern::$teacher;
+echo "<br>";
+
+$myObject = new Intern(); // declare class in object // dynamic class
+
+echo $myObject->ourClass("munna");
+echo "<br>";
+echo $myObject->ourClass("ismail");
+echo "<br>";
+echo $myObject->ourClass("rajib");
 ?>
