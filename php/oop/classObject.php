@@ -94,7 +94,8 @@ echo "<br>";
 
 
 <?php 
-class Intern {
+// class are blueprint who used to create an object 
+class Intern { 
     public static $className = "PWAD";
     public static $teacher = "Farhana Mam";
     public $student ;
