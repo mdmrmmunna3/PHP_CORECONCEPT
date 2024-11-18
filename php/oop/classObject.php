@@ -3,13 +3,13 @@
 // create Fruits class 
 class Fruits {
     // property
-    public $name; // access name property out of code using public property
+    public $name; // access name variable out of code using public property
     public $color;
 
     // init $name parameter from function 
     // set $name value in function using set_name method
     // $this are class pronoun 
-    
+
     function set_name($name) {
         $this->name = $name;
     }
@@ -48,5 +48,44 @@ echo "Name: ";
 echo $banana->get_name();
 echo "Color: ";
 echo $banana->get_color(); 
+echo "<br>";
 
+?>
+
+
+<?php
+
+class Info{
+    public $age;
+
+    function myAge ($age) {
+       return $this->age = $age;
+    }
+}
+
+
+$print = new Info();
+// $print->age = 5;
+echo $print->myAge(9);
+
+// echo $print->age;
+?>
+
+<?php 
+class Hello {
+    public static $counter = 0;
+   static function rafi($counter) {
+        return $counter;
+    }
+
+    function ali ($counter) {
+        return $counter;
+    }
+}
+
+echo Hello::rafi(10) . "<br>"; //static with function
+echo Hello::$counter. "<br>"; //static 
+
+$munna = new Hello(); // dynsmic
+echo $munna->ali(15);
 ?>
