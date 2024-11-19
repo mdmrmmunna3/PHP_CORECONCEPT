@@ -65,6 +65,7 @@ class PrintChild extends PrintVai {
 
     function detailsInfo () {
         echo "<br> $this->name This is a child method. got it";
+     
     }
 
 }
@@ -74,4 +75,23 @@ class PrintChild extends PrintVai {
 // echo PrintChild::$phone;
 $checkedOutput = new PrintChild("hazrat", "hazrat.com","");
 echo $checkedOutput->detailsInfo();
+
+// var_dump($checkedOutput instanceof PrintVai);
+?>
+
+<?php 
+
+class A {
+    public $name = "hello";
+}
+class B {
+    public $name = "bye";
+}
+
+$a = new A();
+$b = new B();
+
+var_dump(($a instanceof B));
+
+
 ?>
