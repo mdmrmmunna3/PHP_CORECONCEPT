@@ -72,7 +72,6 @@ class PrintChild extends PrintVai {
 // $dekho = new PrintHI("Ali", "alibaba@.com");
 // echo $dekho->displayInfo();
 // echo PrintChild::$phone;
-
 $checkedOutput = new PrintChild("hazrat", "hazrat.com","");
 echo $checkedOutput->detailsInfo();
 ?>
