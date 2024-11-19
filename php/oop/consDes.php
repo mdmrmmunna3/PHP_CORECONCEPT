@@ -49,7 +49,7 @@ class PrintVai {
 }
 
 class PrintChild extends PrintVai {
-   public $phone;
+   public static $phone='145';
 
     function __destruct(){
         echo "<br> Thank You so much $this->name good bye";
@@ -58,8 +58,9 @@ class PrintChild extends PrintVai {
     function __construct($name, $email, $phone){
         $this->name = $name;
         $this->email = $email;
-        $this->phone = $phone;
-        echo "<br> My name is $this->name and my email is $this->email . my phone number $this->phone.  do you know this is a child contstuctor!";
+        // $this->phone = $phone;
+        // echo "<br> My name is $this->name and my email is $this->email . my phone number $this->phone.  do you know this is a child contstuctor!";
+        echo "<br> My name is $this->name and my email is $this->email . my phone number " .self::$phone . " . do you know this is a child contstuctor!";
     }
 
     function detailsInfo () {
@@ -70,7 +71,8 @@ class PrintChild extends PrintVai {
 
 // $dekho = new PrintHI("Ali", "alibaba@.com");
 // echo $dekho->displayInfo();
+// echo PrintChild::$phone;
 
-$checkedOutput = new PrintChild("hazrat", "hazrat.com", "14785468");
+$checkedOutput = new PrintChild("hazrat", "hazrat.com","");
 echo $checkedOutput->detailsInfo();
 ?>
