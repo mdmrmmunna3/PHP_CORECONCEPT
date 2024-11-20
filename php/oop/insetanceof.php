@@ -70,7 +70,7 @@ trait Subject2 {
 trait Subject3 {
     function method() {
         echo "output will conflig! ";
-        echo "<br>";
+        echo "<br>"; 
     }
 }
 trait Subject4 {
