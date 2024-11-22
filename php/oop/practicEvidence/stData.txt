@@ -1,6 +1,3 @@
-45,munna,pwad
-,,
-,,
-,,
-45,munna,pwad
+45,munna,
 12,naim,wadp
+45,munna,wadp

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>student inforamtion </title>
+   
 </head>
 <body>
-    <section>
+    <section style="margin-bottom: 10px">
         <form action="" method="post" >
            <div>
             <span>ID</span>
@@ -36,29 +37,44 @@
 
 
 <?php 
-require_once("studentInfo.php");
+// require_once("studentInfo.php");
+
+// if(isset($_POST["submitBtn"])) {
+//     $id = $_POST['stId'];
+//     $name = $_POST['stName'];
+//     $batch = $_POST['stBatch'];
+
+//     $student = new StudentInfo($id, $name, $batch);
+//     $student->saveInfo();
+//     echo "SuccessFully Submit";
+
+//      // Prevent form resubmission
+//      header("Location: " . $_SERVER['PHP_SELF']);
+//      exit;
+
+//      // Clear POST data useing unset
+//     // unset($_POST);
+// }
+
+// StudentInfo::getStInfo();
+
+?>
+
+<?php 
+require_once ("studentInfo.php");
 
 if(isset($_POST["submitBtn"])) {
-    $id = $_POST['stId'];
-    $name = $_POST['stName'];
-    $batch = $_POST['stBatch'];
+    $id = $_POST["stId"];
+    $name = $_POST["stName"];
+    $batch = $_POST["stBatch"];
 
-    $student = new StudentInfo($id, $name, $batch);
-    $student->saveInfo();
+    $studentInfoObj = new StudentInfo($id, $name, $batch);
+    $studentInfoObj->saveStInfo();
     echo "SuccessFully Submit";
 
-     // Prevent form resubmission
-     header("Location: " . $_SERVER['PHP_SELF']);
-     exit;
-
-     // Clear POST data useing unset
-    // unset($_POST);
+    header("Location:" . $_SERVER['PHP_SELF']);
+    exit; 
 }
-
-
-
-    
-
 
 StudentInfo::getStInfo();
 
