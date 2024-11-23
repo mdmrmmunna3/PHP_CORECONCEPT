@@ -22,14 +22,21 @@ class InStudentInformation extends StudentInformation {
 
     public static function getStInfo() {
         $studentInfos = file(self::$file_path_name);
-        echo"<div>";
-        echo "<span><strong> ID </strong></span>";
+        echo"<div class='file_center'>";
+        echo "<span class='left-content'><strong> ID </strong></span>";
         echo "<span><strong> Name </strong></span>";
         echo"</div><br>";
+        // echo "<table> </table>";
 
         foreach($studentInfos as $studentInfo) {
             list($id, $name) = explode(",", trim($studentInfo));
-            echo "$id | $name <br>";
+            // echo "<div class='content-center'> $id | $name <br> </div>";
+            echo"<table>
+            <tr>
+                <td>$id</td>
+                <td class='name_value'>$name</td>
+            </tr></table>
+            ";
         }
     }
 }
