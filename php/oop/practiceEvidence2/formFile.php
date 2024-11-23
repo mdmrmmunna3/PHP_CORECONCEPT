@@ -6,7 +6,7 @@
     <title>Student Inforamtion Form</title>
 </head>
 <body>
-    <section style="margin-bottom: 10px;">
+    <section style="margin: 10px 0;">
         <form action="" method="post">
             <div>
                 <label for="stId">ID</label>
