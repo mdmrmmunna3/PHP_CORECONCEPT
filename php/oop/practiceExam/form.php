@@ -42,12 +42,13 @@
     }
 
     .table_container tr:nth-child(even){
-        /* background-color: #f2f2f2; */
-        background-color: darkcyan;
+        /* background-color: #04AA6D; */
+        background-color: #a9dfbf;
+        /* background-color: darkcyan; */
     }
 
     .table_container tr:hover {
-        /* background-color: #ddd; */
+        /* background-color: #04AA6D; */
         background-color: deepskyblue;
     }
 
@@ -55,12 +56,13 @@
         padding-top: 12px;
         padding-bottom: 12px;
         /* background-color: #04AA6D; */
-        background-color: deepskyblue;
+        /* background-color: deepskyblue; */
+        background-color: #58d68d;
         color: white;
 }
-.table_container td {
+/* .table_container td {
     color:white;
-}
+} */
     </style>
 
 </head>
