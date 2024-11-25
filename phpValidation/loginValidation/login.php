@@ -1,17 +1,40 @@
+<?php
+    session_start();
+
+    if(isset($_POST['submitBtn'])) {
+        $userName = $_POST['name'];
+        $userPass = $_POST['password'];
+
+
+        if($userName === "munna" && $userPass === "123") {
+            $_SESSION['myname'] = $userName;
+            header("location:info.php");
+        }
+        else {
+            // $msg = "username and password incorrect!";
+            if($userName != 'munna') {
+                $msg1 = "<div class='mssg'>User Name is incorrect!</div>";
+            }
+            if($userPass != '123') {
+                $msg2 = "<div class='mssg'>User Password is incorrect!</div>";
+            }
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Information!</title>
-
+    <title>Document</title>
     <style>
         #form_container{
-        float: left;
-        width: 30%;
-        margin: 0 50px;
-        /* width: 500px;
-        margin: 10px auto; */
+        /* float: left; */
+        /* width: 30%;
+        margin: 0 50px; */
+        width: 400px;
+        margin: 50px auto;
         padding: 40px;
         border: none;
         border-radius: 5px;
@@ -33,6 +56,13 @@
         border: none;
         outline: none;
         border-radius: 5px;
+    }
+
+    .mssg {
+        font-size: 22px;
+        text-align: center;
+        color: red;
+        font-weight: 600;
     }
 
     .table_container {
@@ -67,54 +97,29 @@
 
 </head>
 <body>
-    <section>
+     <section>
+
         <form action="" method="post" id="form_container">
             <div class="inputBox">
-                <label for="stId">ID</label>
-                <input type="text" name="stId" id="stId">
+                <label for="name">UserName</label>
+                <input type="text" name="name" id="stInamed">
             </div>
             <div class="inputBox">
-                <label for="stName">Name</label>
-                <input type="text" name="stName" id="stName">
+                <label for="password">UserPassword</label>
+                <input type="password" name="password" id="password">
             </div>
-            <div class="inputBox">
-                <label for="stId">Batch</label>
-                <input type="text" name="stBatch" id="stBatch">
-            </div>
+           
 
             <div class="btn">
-                <input type="submit" value="Submit" name="submitBtn">
+                <input type="submit" value="Log In" name="submitBtn">
             </div>
         </form>
+
+        <?php 
+            echo isset($msg1) ? $msg1 : '';
+            echo "<br>";
+            echo isset($msg2) ? $msg2 : '';
+        ?>
     </section>
-
-
-    <?php
-        
-        require_once("student.php");
-
-        if(isset($_POST["submitBtn"])) {
-            $stId = $_POST['stId'];
-            $stName = $_POST['stName'];
-            $stBatch = $_POST['stBatch'];
-
-            if(empty($stId) || empty($stName) || empty($stBatch)) {
-                echo "<script>alert('input field are required!')</script>";
-            } else{
-                $stInfoObj = new Student($stId, $stName, $stBatch); // pass id, name, batch to construct as a parameter
-                $stInfoObj->saveInfo();
-                // echo "form submit successfully!";
-    
-                header("Location:" . $_SERVER["PHP_SELF"]);
-
-
-            }
-
-           
-        }
-
-        Student::getSaveInfo();
-    ?>
-
 </body>
 </html>
