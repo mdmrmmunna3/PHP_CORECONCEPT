@@ -45,21 +45,28 @@
         font-size: 25px;
         border-radius: 5px;
     }
+    h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
     </style>
 </head>
 <body>
     <section>
         <form action="" method="post" id="form_container">
+        <h3>Find Largest Number!</h3>
             <div class="inputBox">
                 <label for="num1">Enter first Number!</label>
                 <input type="text" name="num1" id="num1">
             </div>
             <div class="inputBox">
-                <label for="num2">Enter first Number!</label>
+                <label for="num2">Enter second Number!</label>
                 <input type="text" name="num2" id="num2">
             </div>
             <div class="inputBox">
-                <label for="num3">Enter first Number!</label>
+                <label for="num3">Enter third Number!</label>
                 <input type="text" name="num3" id="num3">
             </div>
 

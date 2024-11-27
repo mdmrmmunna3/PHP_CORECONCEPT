@@ -45,11 +45,18 @@
         font-size: 25px;
         border-radius: 5px;
     }
+    h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
     </style>
 </head>
 <body>
 <section>
         <form action="" method="post" id="form_container">
+            <h3>Find Prime Number!</h3>
             <div class="inputBox">
                 <label for="num1">Enter Integer Number!</label>
                 <input type="text" name="num1" id="num1">
