@@ -44,6 +44,8 @@
 
     .table_container tr:hover {
         background-color: deepskyblue;
+        color: white;
+        cursor: pointer;
     }
 
     .table_container th {
