@@ -26,11 +26,21 @@ if(isset($_POST['submitBtn'])) {
     
         
     else {
-            if (move_uploaded_file($file_tmp_name, $imgPath.$fileName)) {
-                echo "Successfully uploaded!";
-            }
-            else {
-                echo "Sorry, there was an error uploading your file.";
+            // if (move_uploaded_file($file_tmp_name, $imgPath.$fileName)) {
+            //     echo "Successfully uploaded!";
+            // }
+            // else {
+            //     echo "Sorry, there was an error uploading your file.";
+            // }
+            if(file_exists($imgPath . $fileName)) {
+                $msg3 = "The image with this name already exists. Please change your file and try again.";
+            } else {
+                // Move the uploaded file to the 'image/' directory
+                if (move_uploaded_file($file_tmp_name, $imgPath . $fileName)) {
+                    echo "Successfully uploaded!";
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
             }
         }
     
@@ -66,6 +76,8 @@ if(isset($_POST['submitBtn'])) {
     echo isset($msg1) ? $msg1 : '';
     echo "<br>";
     echo isset($msg2) ? $msg2 : '';
+    echo "<br>";
+    echo isset($msg3) ? $msg3 : '';
     ?>
 
     <section>
