@@ -76,7 +76,7 @@
             for($i = 2; $i <= $number; $i++) {
                 $fact *= $i;
             }
-            echo "<div class='center_content'><span>$number Factorial is $fact</span></div>";
+            echo "<div class='center_content'><span>$number Factorial is : $fact</span></div>";
         }
     }
     
