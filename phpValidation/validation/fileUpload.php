@@ -1,21 +1,32 @@
 <?php
 if (isset($_POST['uploadBtn'])) {
     $filePath = $_FILES['fileUp'];
-    var_dump($filePath);
+    // var_dump($filePath);
 
     $fileName = $_FILES['fileUp']['name'];
     $file_tmp_name = $_FILES['fileUp']['tmp_name'];
-    $fileName = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    $fileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
     $fileSize = $_FILES['fileUp']['size'];
     $imgStorePath = 'image/';
-    $kb = $file_size / 1024;
+    $kb = $fileSize / 1024;
 
     if ($kb > 100 || !in_array($fileType, ['jpg', 'png', 'jpeg', 'gif'])) {
         if ($kb > 100) {
-            $msg1 = "file is too large. your file must be maximum 100kb";
+
+            $msg1 = "<div class='mssg'>file is too large. your file must be maximum 100kb</div>";
         }
         if (!in_array($fileType, ['jpg', 'png', 'jpeg', 'gif'])) {
-            $msg2 = "<br> Sorry, only JPG, JPEG, PNG and GIF files are allowed.";
+            $msg2 = "<br> <div class='mssg'>Sorry, only JPG, JPEG, PNG and GIF files are allowed.</div>";
+        }
+    } else {
+        if (file_exists($imgStorePath . $fileName)) {
+            $msg3 = "<div class='mssg'>The image with this name already exists. Please change your file and try again.</div>";
+        } else {
+            if (move_uploaded_file($file_tmp_name, $imgStorePath . $fileName)) {
+                echo "Successfully Updated!";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
         }
     }
 }
@@ -98,10 +109,30 @@ if (isset($_POST['uploadBtn'])) {
     </section>
 
     <?php
-    // echo isset($msg1) ? $msg1 : '';
-    // echo "<br>";
-    // echo isset($msg2) ? $msg2 : '';
+    echo isset($msg1) ? $msg1 : '';
+    echo "<br>";
+    echo isset($msg2) ? $msg2 : '';
+    echo "<br>";
+    echo isset($msg3) ? $msg3 : '';
+
     ?>
+    <section class="image-container">
+        <?php
+        $imgStorePath = 'image/';
+
+        $images = glob($imgStorePath . "*.{jpg,png,jpeg,gif}", GLOB_BRACE);
+
+        if (count($images) > 0) {
+            foreach ($images as $image) {
+                echo '<img src="' . $image . '" alt="uploaded image">';
+            }
+        } else {
+            echo "No images uploaded yet.";
+        }
+
+
+        ?>
+    </section>
 </body>
 
 </html>
