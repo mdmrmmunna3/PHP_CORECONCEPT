@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['uploadBtn'])) {
     $filePath = $_FILES['fileUp'];
-    var_dump($filePath);
+    // var_dump($filePath);
 
     $fileName = $_FILES['fileUp']['name'];
     $file_tmp_name = $_FILES['fileUp']['tmp_name'];
@@ -40,6 +40,13 @@ if (isset($_POST['uploadBtn'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Uploaded Form</title>
     <style>
+        /* #main {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 150px 0;
+        } */
         #form_container {
             width: 400px;
             margin: 0 auto;
@@ -101,11 +108,32 @@ if (isset($_POST['uploadBtn'])) {
             /* height: auto; */
             border: 1px solid #ccc;
         }
+        .btn_logout {
+            position: fixed;
+            right: 50px;
+            top: 30px;
+        }
+        .btn_logout a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border: none;
+            outline: none;
+            font-weight: 600;
+            font-size: 18px;
+            cursor: pointer;
+            color: white;
+            background: linear-gradient(to left, red, orange);
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 10px 15px;
+        }
     </style>
 </head>
 
 <body>
-    <section>
+    <div class="btn_logout">
+        <a href="logout.php" class="logout" name="logout">Log Out</a>
+    </div>
+    <section id="main">
         <form action="" method="post" id="form_container" enctype="multipart/form-data">
             <h4>File Upload Form</h4>
 
