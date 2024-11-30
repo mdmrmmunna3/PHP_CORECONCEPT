@@ -70,4 +70,18 @@ echo strtolower($hi);
 echo "<br>";
 echo "To UpperCase: ";
 echo strtoupper($hi);
+
+echo "<br>";
+
+$date = "1970-01-01 00:00:00";
+$pattern = "/[-\s:]/";
+$components = preg_split($pattern, $date, );
+print_r ($components);
+
+echo "<br>";
+
+foreach ($components as $component) {
+    // echo $component . PHP_EOL;
+    echo $component . "<br>";
+}
 ?>
