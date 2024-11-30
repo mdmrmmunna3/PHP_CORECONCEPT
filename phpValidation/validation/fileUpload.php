@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['uploadBtn'])) {
     $filePath = $_FILES['fileUp'];
-    // var_dump($filePath);
+    var_dump($filePath);
 
     $fileName = $_FILES['fileUp']['name'];
     $file_tmp_name = $_FILES['fileUp']['tmp_name'];
@@ -89,6 +89,17 @@ if (isset($_POST['uploadBtn'])) {
             color: red;
             font-weight: 600;
             font-size: 20px;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .image-container img {
+            width: 400px;
+            /* height: auto; */
+            border: 1px solid #ccc;
         }
     </style>
 </head>

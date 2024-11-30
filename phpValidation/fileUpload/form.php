@@ -1,7 +1,8 @@
 <?php 
 if(isset($_POST['submitBtn'])) {
 
-   
+   $filePath = $_FILES['fileUpload'];
+//    var_dump($filePath);
 
     $fileName = $_FILES['fileUpload']['name'];
     // $fileType = $_FILES['fileUpload']['type'];
