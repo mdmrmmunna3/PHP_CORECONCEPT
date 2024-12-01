@@ -27,16 +27,7 @@ if(isset($_POST['submitBtn'])) {
             }
     }
 
-    if ($name !== 'munna') {
-        $msg = "<div>Your Name is incorrect!</div>";
-    }
-    // Check if file size is more than 100KB or invalid file type
-    elseif ($kb > 100) {
-        $msg = "<div>Your image must be a maximum of 100 KB</div>";
-    }
-    elseif (!in_array($fileType, ['jpg', 'png', 'jpeg', 'gif'])) {
-        $msg = "<div>Sorry! Only jpg, png, jpeg, gif files are allowed!</div>";
-    }
+    
     else {
             if(file_exists($imgStorePath . $fileName)) {
                     $msg3 = "<div>This file image already exit. change your image. </div>";
@@ -128,6 +119,7 @@ if(isset($_POST['submitBtn'])) {
         echo "<br>";
         ?>
         <form action="" method="post" enctype="multipart/form-data" id="form_container">
+            <h4>Check Validtion Form!</h4>
             <div class="input_box">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" placeholder="munna">
