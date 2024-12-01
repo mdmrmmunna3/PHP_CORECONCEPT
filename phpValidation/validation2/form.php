@@ -62,6 +62,58 @@ if(isset($_POST['submitBtn'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validation</title>
+    <style>
+        #form_container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 5px;
+            /* border: none; */
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 5px 15px;
+        }
+
+        .input_box {
+            margin-bottom: 10px;
+            width: 390px;
+        }
+
+        .input_box input {
+            width: 100%;
+            padding: 5px 0 5px 8px;
+            border: 2px solid green;
+            border-radius: 5px;
+        }
+
+        .inputBox label {
+            font-size: 18px;
+        }
+
+        h4 {
+            font-size: 22px;
+            text-align: center;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .btn input {
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            padding: 10px 0;
+            background-color: green;
+            color: white;
+            cursor: pointer;
+        }
+
+        .mssg {
+            text-align: center;
+            margin-top: 10px;
+            color: red;
+            font-weight: 600;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
     <section>
@@ -75,7 +127,7 @@ if(isset($_POST['submitBtn'])) {
         echo isset($msg3) ? $msg3 : '';
         echo "<br>";
         ?>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data" id="form_container">
             <div class="input_box">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" placeholder="munna">
