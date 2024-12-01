@@ -1,3 +1,7 @@
 102,munnaBhai,61
 12,hello,60
 munnaBhai,102,62
+Munna,102,62
+Munna,101,61
+Munna,102,61
+Gabbar Ali,451,60

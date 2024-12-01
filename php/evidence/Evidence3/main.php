@@ -63,6 +63,12 @@ h3{
     </style>
 </head>
 <body>
+<?php 
+    //  if (isset($_SESSION['msg1'])) {
+    //     echo $_SESSION['msg1'];
+    //     unset($_SESSION['msg1']); 
+    // }
+    ?>
 <section>
     <form action="" method="post" id="form_container">
             <h3>Student Information Form!</h3>
@@ -84,12 +90,15 @@ h3{
             </div>
         </form>
     </section>
+
+  
 </body>
 </html>
 
 
 <?php 
 require_once ('student.php');
+// session_start();
 
 if(isset($_POST['submitBtn'])) {
     $stName = $_POST['stName'];
@@ -98,6 +107,20 @@ if(isset($_POST['submitBtn'])) {
 
     $studentInfoObj = new Student($stName, $stId, $stBatch) ;
     $studentInfoObj->saveData();
+
+    // if($stName === "Munna") {
+    //     $_SESSION['stName'] = $stName;
+    //     $studentInfoObj = new Student($stName, $stId, $stBatch) ;
+    //     $studentInfoObj->saveData();
+    //     header("location:main.php");
+    //     exit();
+    // }
+    // else {
+    //     if($stName !== "Munna") {
+    //         $_SESSION['msg1'] = "<div class='mssg'>User Name is incorrect!</div>";
+    //     }
+    // }
+   
 }
 
 Student::getSaveDataDisplay();
