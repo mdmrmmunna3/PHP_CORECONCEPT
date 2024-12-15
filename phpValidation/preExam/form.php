@@ -75,13 +75,17 @@
 
         .input_box input {
             width: 100%;
-            padding: 5px 0 5px 8px;
-            border: 2px solid grey;
+            padding: 10px 0 10px 8px;
             border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 10px 15px;
+            outline: none;
+            border: none;
+            margin-top: 5px;
         }
 
         .input_box label {
             font-size: 18px;
+           
         }
 
         h4 {
