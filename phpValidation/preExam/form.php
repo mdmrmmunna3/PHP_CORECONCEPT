@@ -1,11 +1,12 @@
 <?php 
+    // Initialize error messages as empty strings
+    $error_msg = $error_msg2 = $error_msg3 = $error_msg4 = $error_msg5 = $error_msg6 = "";
+
     if(isset($_POST['subBtn'])) {
         $name = $_POST['name'];
         $email = $_POST['email'];
         $pass = $_POST['pass'];
-        // var_dump($name, $email, $pass);
         $filePath = $_FILES['fileup'];
-        // var_dump($filePath);
 
         $file_name = $_FILES['fileup']['name'];
         $file_size = $_FILES['fileup']['size'];
@@ -16,82 +17,127 @@
 
         $img_path = 'images/';
 
+        // Validation checks
         if($name !== 'munna' || $email !== 'munna@gmail.com' || $pass !== '78954' || $kb > 200 || !in_array($file_type, ['png','jpg','jpeg','gif'])) {
             if($name !== 'munna') {
-                $error_msg = "<div>User Name Incorrect!</div>";
+                $error_msg = "User Name Incorrect!";
             }
             if($email !== 'munna@gmail.com') {
-                $error_msg2 = "<div>User Email Invalid!</div>";
+                $error_msg2 = "User Email Invalid!";
             }
             if($pass !== '78954') {
-                $error_msg3 = "<div>User Password Incorrect.!</div>";
+                $error_msg3 = "User Password Incorrect!";
             }
             if($kb > 200) {
-                $error_msg4 = "<div>you uploaded file must be maxmimum 200 kb.</div>";
+                $error_msg4 = "You uploaded file must be maximum 200 KB.";
             }
             if(!in_array($file_type, ['png','jpg','jpeg','gif'])) {
-                $error_msg5 = "<div>uploaded file only png, jpg, jpeg, gif formate allowed!</div>";
+                $error_msg5 = "Uploaded file must be in png, jpg, jpeg, or gif format!";
             }
-        }else{
+        } else {
+            // Check if file already exists
             if(file_exists($img_path . $file_name)) {
-                $error_msg6 = "<div>this img already exits . please change this images!;
-        }</div>";
+                $error_msg6 = "This image already exists. Please change the image!";
             }
-            else{
+            else {
+                // Move uploaded file
                 if(move_uploaded_file($file_temp, $img_path . $file_name)) {
                     $_SESSION['checkEmail'] = $email;
-                
-                }
-                else{
-                    echo "Sorry!. Your file not be uploaded yet!";
+                    header("location:display.php");
+                    exit();
+                } else {
+                    echo "Sorry! Your file was not uploaded.";
                 }
             }
         }
     }
-    
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>From validation with file uploade</title>
+    <title>Form Validation with File Upload</title>
+    <style>
+        #form_container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 5px 15px;
+        }
+
+        .input_box {
+            margin-bottom: 10px;
+            width: 390px;
+        }
+
+        .input_box input {
+            width: 100%;
+            padding: 5px 0 5px 8px;
+            border: 2px solid grey;
+            border-radius: 5px;
+        }
+
+        .input_box label {
+            font-size: 18px;
+        }
+
+        h4 {
+            font-size: 22px;
+            text-align: center;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .btn input {
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            padding: 10px 0;
+            background-color: green;
+            color: white;
+            cursor: pointer;
+        }
+
+        .error_msg {
+            color: red;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
     <section>
-    <!-- enctype="multipart/form-data -->
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data" id="form_container">
             <div class="input_box">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="munna">
+                <input type="text" name="name" id="name" placeholder="munna" value="<?php echo isset($name) ? $name : ''; ?>">
+                <?php if($error_msg) { echo "<div class='error_msg'>$error_msg</div>"; } ?>
             </div>
             <div class="input_box">
-                <label for="email">Name</label>
-                <input type="email" name="email" id="email" placeholder="munna@gmail.com">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="munna@gmail.com" value="<?php echo isset($email) ? $email : ''; ?>">
+                <?php if($error_msg2) { echo "<div class='error_msg'>$error_msg2</div>"; } ?>
             </div>
             <div class="input_box">
-                <label for="pass">Name</label>
-                <input type="password" name="pass" id="pass" placeholder="78954">
+                <label for="pass">Password</label>
+                <input type="password" name="pass" id="pass" placeholder="78954" value="<?php echo isset($pass) ? $pass : ''; ?>">
+                <?php if($error_msg3) { echo "<div class='error_msg'>$error_msg3</div>"; } ?>
             </div>
             <div class="input_box">
-                <label for="fileup">FileUp</label>
-                <input type="file" name="fileup" id="fileup" placeholder="78954">
+                <label for="fileup">File Upload</label>
+                <input type="file" name="fileup" id="fileup">
+                <?php if($error_msg4) { echo "<div class='error_msg'>$error_msg4</div>"; } ?>
+                <?php if($error_msg5) { echo "<div class='error_msg'>$error_msg5</div>"; } ?>
+                <?php if($error_msg6) { echo "<div class='error_msg'>$error_msg6</div>"; } ?>
             </div>
             <div class="btn">
                 <input type="submit" value="Submit" name="subBtn">
             </div>
         </form>
-
-        <?php 
-        echo isset($error_msg) ? $error_msg : '';
-        echo isset($error_msg2) ? $error_msg2 : '';
-        echo isset($error_msg3) ? $error_msg3 : '';
-        echo isset($error_msg4) ? $error_msg4 : '';
-        echo isset($error_msg5) ? $error_msg5 : '';
-        echo isset($error_msg6) ? $error_msg6 : '';
-        ?>
     </section>
 </body>
 </html>
-
