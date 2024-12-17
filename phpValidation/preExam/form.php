@@ -1,60 +1,60 @@
-<?php 
-    // Initialize error messages as empty strings
-    $error_msg = $error_msg2 = $error_msg3 = $error_msg4 = $error_msg5 = $error_msg6 = "";
+<?php
+// Initialize error messages as empty strings
+$error_msg = $error_msg2 = $error_msg3 = $error_msg4 = $error_msg5 = $error_msg6 = "";
 
-    if(isset($_POST['subBtn'])) {
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $pass = $_POST['pass'];
-        $filePath = $_FILES['fileup'];
+if (isset($_POST['subBtn'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $pass = $_POST['pass'];
+    $filePath = $_FILES['fileup'];
 
-        $file_name = $_FILES['fileup']['name'];
-        $file_size = $_FILES['fileup']['size'];
-        $file_temp = $_FILES['fileup']['tmp_name'];
-        $file_type = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+    $file_name = $_FILES['fileup']['name'];
+    $file_size = $_FILES['fileup']['size'];
+    $file_temp = $_FILES['fileup']['tmp_name'];
+    $file_type = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
-        $kb = $file_size / 1024;
+    $kb = $file_size / 1024;
 
-        $img_path = 'images/';
+    $img_path = 'images/';
 
-        // Validation checks
-        if($name !== 'munna' || $email !== 'munna@gmail.com' || $pass !== '78954' || $kb > 200 || !in_array($file_type, ['png','jpg','jpeg','gif'])) {
-            if($name !== 'munna') {
-                $error_msg = "User Name Incorrect!";
-            }
-            if($email !== 'munna@gmail.com') {
-                $error_msg2 = "User Email Invalid!";
-            }
-            if($pass !== '78954') {
-                $error_msg3 = "User Password Incorrect!";
-            }
-            if($kb > 200) {
-                $error_msg4 = "You uploaded file must be maximum 200 KB.";
-            }
-            if(!in_array($file_type, ['png','jpg','jpeg','gif'])) {
-                $error_msg5 = "Uploaded file must be in png, jpg, jpeg, or gif format!";
-            }
+    // Validation checks
+    if ($name !== 'munna' || $email !== 'munna@gmail.com' || $pass !== '78954' || $kb > 200 || !in_array($file_type, ['png', 'jpg', 'jpeg', 'gif'])) {
+        if ($name !== 'munna') {
+            $error_msg = "User Name Incorrect!";
+        }
+        if ($email !== 'munna@gmail.com') {
+            $error_msg2 = "User Email Invalid!";
+        }
+        if ($pass !== '78954') {
+            $error_msg3 = "User Password Incorrect!";
+        }
+        if ($kb > 200) {
+            $error_msg4 = "You uploaded file must be maximum 200 KB.";
+        }
+        if (!in_array($file_type, ['png', 'jpg', 'jpeg', 'gif'])) {
+            $error_msg5 = "Uploaded file must be in png, jpg, jpeg, or gif format!";
+        }
+    } else {
+        // Check if file already exists
+        if (file_exists($img_path . $file_name)) {
+            $error_msg6 = "This image already exists. Please change the image!";
         } else {
-            // Check if file already exists
-            if(file_exists($img_path . $file_name)) {
-                $error_msg6 = "This image already exists. Please change the image!";
-            }
-            else {
-                // Move uploaded file
-                if(move_uploaded_file($file_temp, $img_path . $file_name)) {
-                    $_SESSION['checkEmail'] = $email;
-                    header("location:display.php");
-                    exit();
-                } else {
-                    echo "Sorry! Your file was not uploaded.";
-                }
+            // Move uploaded file
+            if (move_uploaded_file($file_temp, $img_path . $file_name)) {
+                $_SESSION['checkEmail'] = $email;
+                header("location:display.php");
+                exit();
+            } else {
+                echo "Sorry! Your file was not uploaded.";
             }
         }
     }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,7 +85,7 @@
 
         .input_box label {
             font-size: 18px;
-           
+
         }
 
         h4 {
@@ -113,30 +113,46 @@
         }
     </style>
 </head>
+
 <body>
     <section>
         <form action="" method="post" enctype="multipart/form-data" id="form_container">
             <div class="input_box">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="munna" value="<?php echo isset($name) ? $name : ''; ?>">
-                <?php if($error_msg) { echo "<div class='error_msg'>$error_msg</div>"; } ?>
+                <input type="text" name="name" id="name" placeholder="munna"
+                    value="<?php echo isset($name) ? $name : ''; ?>">
+                <?php if ($error_msg) {
+                    echo "<div class='error_msg'>$error_msg</div>";
+                } ?>
             </div>
             <div class="input_box">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="munna@gmail.com" value="<?php echo isset($email) ? $email : ''; ?>">
-                <?php if($error_msg2) { echo "<div class='error_msg'>$error_msg2</div>"; } ?>
+                <input type="email" name="email" id="email" placeholder="munna@gmail.com"
+                    value="<?php echo isset($email) ? $email : ''; ?>">
+                <?php if ($error_msg2) {
+                    echo "<div class='error_msg'>$error_msg2</div>";
+                } ?>
             </div>
             <div class="input_box">
                 <label for="pass">Password</label>
-                <input type="password" name="pass" id="pass" placeholder="78954" value="<?php echo isset($pass) ? $pass : ''; ?>">
-                <?php if($error_msg3) { echo "<div class='error_msg'>$error_msg3</div>"; } ?>
+                <input type="password" name="pass" id="pass" placeholder="78954"
+                    value="<?php echo isset($pass) ? $pass : ''; ?>">
+                <?php if ($error_msg3) {
+                    echo "<div class='error_msg'>$error_msg3</div>";
+                } ?>
             </div>
             <div class="input_box">
                 <label for="fileup">File Upload</label>
                 <input type="file" name="fileup" id="fileup">
-                <?php if($error_msg4) { echo "<div class='error_msg'>$error_msg4</div>"; } ?>
-                <?php if($error_msg5) { echo "<div class='error_msg'>$error_msg5</div>"; } ?>
-                <?php if($error_msg6) { echo "<div class='error_msg'>$error_msg6</div>"; } ?>
+                <?php if ($error_msg4) {
+                    echo "<div class='error_msg'>$error_msg4</div>";
+                } ?>
+                <?php if ($error_msg5) {
+                    echo "<div class='error_msg'>$error_msg5</div>";
+                } ?>
+                <?php if ($error_msg6) {
+                    echo "<div class='error_msg'>$error_msg6</div>";
+                } ?>
             </div>
             <div class="btn">
                 <input type="submit" value="Submit" name="subBtn">
@@ -144,4 +160,5 @@
         </form>
     </section>
 </body>
+
 </html>
