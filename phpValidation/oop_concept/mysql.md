@@ -317,3 +317,10 @@ MySQL হলো একটি ওপেন সোর্স রিলেশনা�
     RIGHT JOIN departments
     ON customers.department_id = department.id;
 ```
+
+### Flow of MVC in Laravel:
+A user request (e.g., accessing /posts) hits the route defined in web.php.
+The route directs the request to a controller (e.g., PostController@index).
+The controller retrieves the necessary data from the model (e.g., Post::all()).
+The controller then passes the data to the view (e.g., view('posts.index', compact('posts'))).
+The view renders the data and returns the HTML response to the user.
